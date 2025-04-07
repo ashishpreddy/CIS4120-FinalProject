@@ -1,0 +1,61 @@
+.navigation {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  background-color: var(--panel-color);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.nav-item {
+  flex: 1;
+  text-align: center;
+  padding: 12px 0;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.nav-item.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.nav-item.active::before {
+  content: "POW!";
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  font-family: 'Bangers', cursive;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  opacity: 0;
+  animation: pop-in 0.3s forwards;
+}
+
+.home-nav.active::before {
+  content: "HOME!";
+}
+
+.nav-icon {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.nav-button {
+  font-size: 12px;
+  font-weight: bold;
+} 

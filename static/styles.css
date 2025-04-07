@@ -1,0 +1,24 @@
+:root {
+  --primary-blue: #6BAACE;
+  --primary-pink: #E8A5C1;
+  --light-gray: #f5f5f5;
+  --dark-gray: #333333;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background-color: white;
+  position: relative;
+  padding-bottom: 70px;
+}
+
+/* Copy the rest of your CSS here */ 
