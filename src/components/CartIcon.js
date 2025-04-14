@@ -8,7 +8,6 @@ const CartIcon = () => {
   const navigate = useNavigate();
   
   const handleCartClick = () => {
-    console.log('Navigating to cart page');
     navigate('/cart');
   };
   

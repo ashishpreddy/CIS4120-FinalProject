@@ -9,6 +9,8 @@ import ProfilePage from './pages/ProfilePage';
 import Navigation from './components/Navigation';
 import { CartProvider } from './components/CartContext';
 import CartPage from './pages/CartPage';
+import { WishlistProvider } from './components/WishlistContext';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   const [currentPage] = useState('home');
@@ -34,20 +36,23 @@ function App() {
   
   return (
     <CartProvider>
-      <Router>
-        <div className="app">
-          <Routes>
-            <Route path="/" element={renderPage()} />
-            <Route path="/buy" element={<BuyMarketplace />} />
-            <Route path="/wishlist" element={<WishlistPage />} />
-            <Route path="/drops" element={<DropsPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/friends" element={<div>Friends Page</div>} />
-          </Routes>
-          <Navigation />
-        </div>
-      </Router>
+      <WishlistProvider>
+        <Router>
+          <ScrollToTop />
+          <div className="app">
+            <Routes>
+              <Route path="/" element={renderPage()} />
+              <Route path="/buy" element={<BuyMarketplace />} />
+              <Route path="/wishlist" element={<WishlistPage />} />
+              <Route path="/drops" element={<DropsPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/friends" element={<div>Friends Page</div>} />
+            </Routes>
+            <Navigation />
+          </div>
+        </Router>
+      </WishlistProvider>
     </CartProvider>
   );
 }

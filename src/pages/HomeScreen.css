@@ -1,23 +1,9 @@
 .home-screen {
-  padding: 20px;
+  padding: var(--spacing-lg);
   padding-bottom: 80px;
   position: relative;
   overflow: hidden;
-}
-
-.comic-panel-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 10%, transparent 10.1%),
-    radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 15%, transparent 15.1%),
-    radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 20%, transparent 20.1%);
-  background-size: 300px 300px;
-  opacity: 0.5;
-  z-index: -1;
+  font-family: var(--body-font);
 }
 
 .logo-container {
@@ -32,34 +18,18 @@
   position: absolute;
   width: 200px;
   height: 200px;
-  background: var(--accent-color);
+  background-color: var(--accent-color);
   transform: rotate(45deg);
   z-index: -1;
-  animation: pulse 3s infinite;
-}
-
-.logo-burst:before, .logo-burst:after {
-  content: '';
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  background: var(--accent-color);
-}
-
-.logo-burst:before {
-  transform: rotate(30deg);
-}
-
-.logo-burst:after {
-  transform: rotate(60deg);
 }
 
 .logo {
-  font-family: 'Bangers', cursive;
+  font-family: var(--heading-font);
   font-size: 72px;
-  margin: 0;
+  color: var(--primary-color);
+  text-shadow: 3px 3px 0 var(--secondary-color);
   letter-spacing: 2px;
-  text-shadow: 3px 3px 0 var(--primary-color);
+  margin: 0;
 }
 
 .logo-c { color: var(--primary-color); }
@@ -112,7 +82,7 @@
 
 .cta-heading {
   text-align: center;
-  font-family: 'Bangers', cursive;
+  font-family: var(--heading-font);
   font-size: 28px;
   color: var(--primary-color);
   margin: 30px 0 20px;
@@ -191,7 +161,7 @@
 }
 
 .section-title {
-  font-family: 'Bangers', cursive;
+  font-family: var(--heading-font);
   color: var(--primary-color);
   font-size: 24px;
   margin: 0;
@@ -201,7 +171,7 @@
 .hot-badge {
   background-color: var(--secondary-color);
   color: white;
-  font-family: 'Bangers', cursive;
+  font-family: var(--heading-font);
   padding: 3px 10px;
   border-radius: 10px;
   font-size: 14px;
@@ -254,7 +224,7 @@
   padding: 15px;
   margin: 0 10px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
   transition: transform 0.2s;
 }
 
@@ -265,4 +235,11 @@
 .quick-icon {
   font-size: 24px;
   margin-bottom: 5px;
+}
+
+/* Other interactive elements */
+.featured-comic,
+.news-item,
+.action-button {
+  transition: all 0.2s;
 } 

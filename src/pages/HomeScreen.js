@@ -64,17 +64,6 @@ const HomeScreen = () => {
           </p>
         </div>
       </div>
-      
-      <div className="quick-access">
-        <Link to="/wishlist" className="quick-access-button">
-          <span className="quick-icon">📋</span>
-          <span>Wishlist</span>
-        </Link>
-        <Link to="/drops" className="quick-access-button">
-          <span className="quick-icon">🎁</span>
-          <span>Drops</span>
-        </Link>
-      </div>
     </div>
   );
 };

@@ -3,77 +3,83 @@ import './CartPage.css';
 import { useCart } from '../components/CartContext';
 import { useNavigate } from 'react-router-dom';
 
-// Import comic cover images
-import batmanCover from '../assets/Batman_TheLongHalloween.jpg';
-import invincibleCover from '../assets/Invincible_CompendiumVol1.jpg';
-import spawnCover from '../assets/Spawn_OriginsCollection.jpg';
-import infinityCover from '../assets/TheInfinityGauntlet.jpg';
-import Batman1 from '../assets/Batman1.jpg';
-import Spiderman1 from '../assets/Spiderman1.jpg';
-import NewRelease1 from '../assets/NewRelease1.jpg';
-import Xmen1 from '../assets/Xmen1.jpg';
-import DrDoom1 from '../assets/DrDoom1.jpg';
+// Import comic data
+import comicData from '../comic_volumes_20.json';
+
+// Import fallback image
+import defaultCover from '../assets/batman-vol-1-1.jpg';
 
 const CartPage = () => {
   const { cartItems, removeFromCart } = useCart();
-  const [promoCode, setPromoCode] = useState('');
-  const [promoApplied, setPromoApplied] = useState(false);
+  const [showCheckoutConfirmation, setShowCheckoutConfirmation] = useState(false);
   const navigate = useNavigate();
   
-  // Map comic names to their cover images and prices
-  const comicDetails = {
-    'Batman: The Long Halloween': { image: batmanCover, price: 24.99 },
-    'Invincible Compendium Vol. 1': { image: invincibleCover, price: 59.99 },
-    'Spawn: Origins Collection': { image: spawnCover, price: 29.99 },
-    'The Infinity Gauntlet': { image: infinityCover, price: 24.99 },
-    'Batman Vol. 1': { image: Batman1, price: 19.99 },
-    'Amazing Spider-Man': { image: Spiderman1, price: 17.99 },
-    'New Avengers': { image: NewRelease1, price: 21.99 },
-    'X-Men: Dark Phoenix Saga': { image: Xmen1, price: 22.99 },
-    'Infamous Iron Man': { image: DrDoom1, price: 18.99 }
+  // Function to handle back button click
+  const handleBackClick = () => {
+    navigate(-1); // This navigates to the previous page in history
+  };
+  
+  // Function to safely get image path
+  const getImagePath = (comicName) => {
+    try {
+      // Find the comic in the JSON data
+      const comic = comicData.find(c => c.Title.includes(comicName));
+      if (comic && comic.CoverImage) {
+        // Extract just the filename from the path in the JSON
+        const filename = comic.CoverImage.split('/').pop();
+        // Try to require the image from assets
+        return require(`../assets/${filename}`);
+      }
+      throw new Error('Comic not found');
+    } catch (error) {
+      // If image not found, return default cover
+      return defaultCover;
+    }
+  };
+  
+  // Function to get comic price from JSON data
+  const getComicPrice = (comicName) => {
+    const comic = comicData.find(c => c.Title.includes(comicName));
+    if (comic && comic.Price) {
+      // Remove $ and commas from price string and convert to number
+      const priceString = comic.Price.replace('$', '').replace(/,/g, '');
+      const price = parseFloat(priceString);
+      // If price is too high (like collector's items), use a reasonable price
+      return price > 1000 ? 24.99 : price;
+    }
+    return 19.99; // Default price if not found
   };
   
   // Calculate subtotal
   const subtotal = cartItems.reduce((total, item) => {
-    const comicPrice = comicDetails[item.name]?.price || 0;
-    return total + comicPrice;
+    return total + getComicPrice(item.name);
   }, 0);
-  
-  // Calculate discount
-  const discount = promoApplied ? subtotal * 0.1 : 0;
   
   // Calculate shipping
   const shipping = subtotal > 50 ? 0 : 5.99;
   
   // Calculate total
-  const total = subtotal - discount + shipping;
-  
-  const handleApplyPromo = () => {
-    if (promoCode.toLowerCase() === 'boom10') {
-      setPromoApplied(true);
-    } else {
-      alert('Invalid promo code');
-    }
-  };
+  const total = subtotal + shipping;
   
   const handleCheckout = () => {
-    alert('Thank you for your purchase! Your comics will be shipped soon.');
-    // Here you would typically process the payment and clear the cart
+    setShowCheckoutConfirmation(true);
   };
   
-  const getComicCover = (comicName) => {
-    return comicDetails[comicName]?.image || Batman1; // Default to Batman1 if not found
-  };
-  
-  const getComicPrice = (comicName) => {
-    return comicDetails[comicName]?.price || 0;
+  const handleConfirmCheckout = () => {
+    // Clear cart by removing each item individually
+    [...cartItems].forEach(item => {
+      removeFromCart(item.cartId || item.id);
+    });
+    
+    setShowCheckoutConfirmation(false);
+    navigate('/');
   };
 
   return (
     <div className="cart-page">
       <div className="comic-panel-background"></div>
       
-      <div className="back-button" onClick={() => navigate(-1)}>
+      <div className="back-button" onClick={handleBackClick}>
         <span>←</span>
       </div>
       
@@ -98,10 +104,10 @@ const CartPage = () => {
           <div className="cart-items-container">
             <div className="cart-items">
               {cartItems.map((item) => (
-                <div className="cart-item" key={item.id}>
+                <div className="cart-item" key={item.cartId || item.id}>
                   <div 
                     className="item-cover" 
-                    style={{backgroundImage: `url(${getComicCover(item.name)})`}}
+                    style={{backgroundImage: `url(${getImagePath(item.name)})`}}
                   ></div>
                   <div className="item-details">
                     <h3>{item.name}</h3>
@@ -109,7 +115,7 @@ const CartPage = () => {
                   </div>
                   <button 
                     className="remove-item-button" 
-                    onClick={() => removeFromCart(item.id)}
+                    onClick={() => removeFromCart(item.cartId || item.id)}
                     title="Remove from cart"
                   >
                     ✖
@@ -125,13 +131,6 @@ const CartPage = () => {
                 <span>${subtotal.toFixed(2)}</span>
               </div>
               
-              {promoApplied && (
-                <div className="summary-row discount">
-                  <span>Discount (10%)</span>
-                  <span>-${discount.toFixed(2)}</span>
-                </div>
-              )}
-              
               <div className="summary-row">
                 <span>Shipping</span>
                 <span>{shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}</span>
@@ -141,29 +140,6 @@ const CartPage = () => {
                 <span>Total</span>
                 <span>${total.toFixed(2)}</span>
               </div>
-              
-              <div className="promo-code">
-                <input 
-                  type="text" 
-                  placeholder="Promo Code" 
-                  value={promoCode}
-                  onChange={(e) => setPromoCode(e.target.value)}
-                  disabled={promoApplied}
-                />
-                <button 
-                  className="button button-secondary"
-                  onClick={handleApplyPromo}
-                  disabled={promoApplied}
-                >
-                  Apply
-                </button>
-              </div>
-              
-              {promoApplied && (
-                <div className="promo-applied">
-                  <span>✓</span> BOOM10 applied!
-                </div>
-              )}
               
               <button className="button button-accent checkout-button" onClick={handleCheckout}>
                 Checkout
@@ -180,11 +156,36 @@ const CartPage = () => {
           </div>
           
           <div className="continue-shopping">
-            <button className="button button-secondary" onClick={() => navigate(-1)}>
+            <button className="button button-secondary" onClick={handleBackClick}>
               Continue Shopping
             </button>
           </div>
         </>
+      )}
+      
+      {/* Checkout Confirmation Popup */}
+      {showCheckoutConfirmation && (
+        <div className="checkout-confirmation-overlay">
+          <div className="checkout-confirmation-popup">
+            <div className="checkout-confirmation-content">
+              <div className="checkout-icon">💥</div>
+              <h2>KAPOW! Order Confirmed!</h2>
+              <p>Thank you for shopping with Comic Collector! Your order has been received and is being processed faster than The Flash on coffee!</p>
+              <p className="shipping-message">Your comics will be shipped in a protective sleeve and should arrive within 3-5 business days.</p>
+              <div className="order-details">
+                <div className="order-number">
+                  <span>Order #:</span> CC-{Math.floor(100000 + Math.random() * 900000)}
+                </div>
+                <div className="order-total">
+                  <span>Total:</span> ${total.toFixed(2)}
+                </div>
+              </div>
+              <button className="button button-accent" onClick={handleConfirmCheckout}>
+                Continue to Homepage
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

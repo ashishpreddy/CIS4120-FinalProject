@@ -3,30 +3,15 @@
   background-color: var(--background-color);
   position: relative;
   overflow: hidden;
-  font-family: 'Nunito', sans-serif;
+  font-family: var(--body-font);
   min-height: 100vh;
 }
 
-.comic-panel-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 10%, transparent 10.1%),
-    radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 15%, transparent 15.1%),
-    radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 20%, transparent 20.1%);
-  background-size: 300px 300px;
-  opacity: 0.5;
-  z-index: -1;
-}
-
 .profile-header {
-  padding: 30px 20px;
+  padding: var(--spacing-xl) var(--spacing-lg);
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: var(--spacing-lg);
 }
 
 .profile-avatar {
@@ -35,7 +20,7 @@
   height: 100px;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-md);
   border: 3px solid var(--panel-color);
 }
 
@@ -45,33 +30,12 @@
   object-fit: cover;
 }
 
-.edit-avatar {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background-color: var(--secondary-color);
-  color: white;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.profile-info {
-  position: relative;
-  flex: 1;
-}
-
 .profile-name {
-  font-family: 'Bangers', cursive;
+  font-family: var(--heading-font);
   color: var(--primary-color);
   font-size: 32px;
-  margin-bottom: 5px;
-  text-shadow: 1px 1px 0 var(--accent-color);
+  margin: 0;
+  text-shadow: 2px 2px 0 var(--accent-color);
   letter-spacing: 1px;
 }
 
@@ -108,16 +72,16 @@
 
 .tab-button {
   flex: 1;
-  padding: 12px 0;
+  padding: 10px;
   background: none;
   border: none;
-  font-family: 'Nunito', sans-serif;
+  border-bottom: 3px solid transparent;
+  font-family: var(--body-font);
   font-weight: bold;
   font-size: 14px;
-  color: var(--text-color);
   cursor: pointer;
-  transition: background-color 0.3s;
-  position: relative;
+  transition: all 0.2s;
+  color: #888;
 }
 
 .tab-button.active {
@@ -346,6 +310,29 @@
   padding: 20px;
   margin: 0 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit-profile-button {
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  border: none;
+  border-radius: 20px;
+  padding: 5px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.edit-profile-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tab-button,
+.collection-item,
+.settings-option {
+  transition: all 0.2s;
 }
 
 @media (max-width: 480px) {

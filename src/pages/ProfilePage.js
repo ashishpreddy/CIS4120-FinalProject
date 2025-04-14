@@ -1,13 +1,40 @@
 import React, { useState } from 'react';
 import './ProfilePage.css';
-// Import images from assets
-import invincibleCover from '../assets/Invincible_CompendiumVol1.jpg';
-import spawnCover from '../assets/Spawn_OriginsCollection.jpg';
-import infinityCover from '../assets/TheInfinityGauntlet.jpg';
-import batmanCover from '../assets/Batman_TheLongHalloween.jpg';
+
+// Import comic data
+import comicData from '../comic_volumes_20.json';
+
+// Import fallback image
+import defaultCover from '../assets/batman-vol-1-1.jpg';
 
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState('collection');
+  
+  // Function to safely get image path
+  const getImagePath = (comicTitle) => {
+    try {
+      // Find the comic in the JSON data
+      const comic = comicData.find(c => c.Title === comicTitle);
+      if (comic && comic.CoverImage) {
+        // Extract just the filename from the path in the JSON
+        const filename = comic.CoverImage.split('/').pop();
+        // Try to require the image from assets
+        return require(`../assets/${filename}`);
+      }
+      throw new Error('Comic not found');
+    } catch (error) {
+      // If image not found, return default cover
+      return defaultCover;
+    }
+  };
+  
+  // Collection comics - using specific comics from the JSON data
+  const collectionComics = [
+    "Invincible Vol. 1 #1",
+    "Spawn Vol. 1 #1",
+    "Batman Vol. 1 #1",
+    "The Walking Dead Vol. 1 #1"
+  ];
   
   return (
     <div className="profile-page">
@@ -81,25 +108,18 @@ const ProfilePage = () => {
             </div>
             
             <div className="collection-grid">
-              <div className="comic-item">
-                <div className="comic-cover" style={{backgroundImage: `url(${invincibleCover})`}}></div>
-                <div className="comic-title">Invincible Compendium Vol. 1</div>
-              </div>
-              
-              <div className="comic-item">
-                <div className="comic-cover" style={{backgroundImage: `url(${spawnCover})`}}></div>
-                <div className="comic-title">Spawn: Origins Collection</div>
-              </div>
-              
-              <div className="comic-item">
-                <div className="comic-cover" style={{backgroundImage: `url(${infinityCover})`}}></div>
-                <div className="comic-title">The Infinity Gauntlet</div>
-              </div>
-              
-              <div className="comic-item">
-                <div className="comic-cover" style={{backgroundImage: `url(${batmanCover})`}}></div>
-                <div className="comic-title">Batman: The Long Halloween</div>
-              </div>
+              {collectionComics.map((comicTitle, index) => {
+                const comic = comicData.find(c => c.Title === comicTitle);
+                return (
+                  <div className="comic-item" key={index}>
+                    <div 
+                      className="comic-cover" 
+                      style={{backgroundImage: `url(${getImagePath(comicTitle)})`}}
+                    ></div>
+                    <div className="comic-title">{comic ? comic.Title : comicTitle}</div>
+                  </div>
+                );
+              })}
             </div>
             
             <button className="button button-secondary view-all-button">View All Comics</button>
@@ -117,7 +137,7 @@ const ProfilePage = () => {
               <div className="activity-item">
                 <div className="activity-icon">🛒</div>
                 <div className="activity-details">
-                  <div className="activity-title">Purchased Batman: Year One</div>
+                  <div className="activity-title">Purchased Batman Vol. 1 #1</div>
                   <div className="activity-time">2 days ago</div>
                 </div>
               </div>
@@ -125,7 +145,7 @@ const ProfilePage = () => {
               <div className="activity-item">
                 <div className="activity-icon">⭐</div>
                 <div className="activity-details">
-                  <div className="activity-title">Rated Watchmen 5 stars</div>
+                  <div className="activity-title">Rated Doctor Strange Vol. 1 #1 5 stars</div>
                   <div className="activity-time">1 week ago</div>
                 </div>
               </div>
@@ -133,7 +153,7 @@ const ProfilePage = () => {
               <div className="activity-item">
                 <div className="activity-icon">📝</div>
                 <div className="activity-details">
-                  <div className="activity-title">Added Saga Vol. 2 to wishlist</div>
+                  <div className="activity-title">Added Saga Vol. 1 #1 to wishlist</div>
                   <div className="activity-time">2 weeks ago</div>
                 </div>
               </div>
