@@ -1,0 +1,35 @@
+.list-item-page {
+    padding-bottom: 80px;
+    background-color: var(--background-color);
+    position: relative;
+    overflow: hidden;
+    font-family: var(--body-font);
+  }
+  
+  .list-item-header {
+    padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-md);
+    position: relative;
+  }
+  
+  .list-item-title {
+    font-family: var(--heading-font);
+    color: var(--primary-color);
+    font-size: 48px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 0 var(--accent-color);
+    letter-spacing: 2px;
+  }
+  
+  .list-item-subtitle {
+    color: var(--text-color);
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .list-item-content {
+    padding: 20px;
+    background-color: var(--panel-color);
+    border-radius: 12px;
+    margin: 0 20px;
+    box-shadow: var(--shadow-md);
+  } 
