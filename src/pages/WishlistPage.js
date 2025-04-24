@@ -5,8 +5,10 @@ import { StrictModeDroppable } from './StrictModeDroppable';
 import CartIcon from '../components/CartIcon';
 import comicData from '../comic_volumes_20.json';
 import { useWishlist } from '../components/WishlistContext';
+import { useNavigate } from 'react-router-dom';
 
 const WishlistPage = () => {
+  const navigate = useNavigate();
   const [showInstructions, setShowInstructions] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
   const [formType, setFormType] = useState('comic'); // 'comic' or 'author'
@@ -22,6 +24,7 @@ const WishlistPage = () => {
   const [showAuthorSearch, setShowAuthorSearch] = useState(false);
   const [authorSearchQuery, setAuthorSearchQuery] = useState('');
   const [authorSearchResults, setAuthorSearchResults] = useState([]);
+  const [dropsUpdateNotification, setDropsUpdateNotification] = useState(false);
   
   // Use the wishlist context
   const { 
@@ -225,6 +228,127 @@ const WishlistPage = () => {
     return ''; // Placeholder
   };
 
+  const handleComicClick = (comicName) => {
+    navigate(`/buy-marketplace?comic=${encodeURIComponent(comicName)}`);
+  };
+
+  const handleAuthorClick = (authorName) => {
+    navigate(`/buy-marketplace?author=${encodeURIComponent(authorName)}`);
+  };
+
+  const handleUpdateDrops = () => {
+    // Generate new drops based on current wishlist
+    const availableComics = comicData.filter(comic => comic.Availability !== false);
+    
+    // If wishlist is empty, use random comics
+    if (wishlistItems.length === 0 && authorWishlistItems.length === 0) {
+      const randomComics = [...availableComics].sort(() => 0.5 - Math.random()).slice(0, 4);
+      
+      // Compare with current drops
+      const currentDrops = JSON.parse(localStorage.getItem('featuredDrops') || '[]');
+      const currentTitles = currentDrops.map(comic => comic.Title).sort();
+      const newTitles = randomComics.map(comic => comic.Title).sort();
+      
+      const dropsChanged = JSON.stringify(currentTitles) !== JSON.stringify(newTitles);
+      
+      // Store in localStorage
+      localStorage.setItem('featuredDrops', JSON.stringify(randomComics));
+      
+      // Show appropriate notification
+      if (dropsChanged) {
+        setDropsUpdateNotification('Your Drops have been updated!');
+      } else {
+        setDropsUpdateNotification('No changes to your Drops');
+      }
+    } else {
+      // Score each comic based on wishlist preferences
+      const scoredComics = availableComics.map(comic => {
+        let score = 0;
+        
+        // Check if comic is in wishlist (highest priority)
+        if (wishlistItems.some(item => item.name === comic.Title)) {
+          score += 100;
+        }
+        
+        // Check if author is in wishlist
+        if (authorWishlistItems.some(item => item.name === comic.Author)) {
+          score += 50;
+        }
+        
+        // Check for buzzword matches with wishlist comics
+        const wishlistComics = wishlistItems.map(item => 
+          comicData.find(c => c.Title === item.name)
+        ).filter(Boolean);
+        
+        // Count matching buzzwords
+        wishlistComics.forEach(wishComic => {
+          if (wishComic.Buzzwords && comic.Buzzwords) {
+            const matchingBuzzwords = wishComic.Buzzwords.filter(buzz => 
+              comic.Buzzwords.includes(buzz)
+            );
+            score += matchingBuzzwords.length * 10;
+          }
+          
+          // Add points for same genre
+          if (wishComic.Genre === comic.Genre) {
+            score += 5;
+          }
+          
+          // Add points for same character
+          if (wishComic.Character === comic.Character) {
+            score += 5;
+          }
+          
+          // Add points for same publisher
+          if (wishComic.Publisher === comic.Publisher) {
+            score += 3;
+          }
+        });
+        
+        return { comic, score };
+      });
+      
+      // Sort by score (highest first) and take top 4
+      const topComics = scoredComics
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 4)
+        .map(item => item.comic);
+      
+      // If we don't have 4 comics, fill with random ones
+      if (topComics.length < 4) {
+        const usedIds = topComics.map(comic => comic.Title);
+        const remainingComics = availableComics
+          .filter(comic => !usedIds.includes(comic.Title))
+          .sort(() => 0.5 - Math.random())
+          .slice(0, 4 - topComics.length);
+        
+        topComics.push(...remainingComics);
+      }
+      
+      // Check if drops have changed
+      const currentDrops = JSON.parse(localStorage.getItem('featuredDrops') || '[]');
+      const currentTitles = currentDrops.map(comic => comic.Title).sort();
+      const newTitles = topComics.map(comic => comic.Title).sort();
+      
+      const dropsChanged = JSON.stringify(currentTitles) !== JSON.stringify(newTitles);
+      
+      // Store in localStorage
+      localStorage.setItem('featuredDrops', JSON.stringify(topComics));
+      
+      // Show appropriate notification
+      if (dropsChanged) {
+        setDropsUpdateNotification('Your Drops have been updated!');
+      } else {
+        setDropsUpdateNotification('No changes to your Drops');
+      }
+    }
+    
+    // Hide notification after 1.5 seconds
+    setTimeout(() => {
+      setDropsUpdateNotification(false);
+    }, 1500);
+  };
+
   return (
     <div className="wishlist-page">
       <div className="comic-panel-background"></div>
@@ -237,10 +361,16 @@ const WishlistPage = () => {
       
       <div className="wishlist-description">
         <p>Drag and drop to rank comics and authors in order of preference</p>
-        <button className="info-button-large" onClick={() => setShowInstructions(true)}>
-          <span className="info-icon">ℹ️</span>
-          <span>How to use your Wishlist</span>
-        </button>
+        <div className="wishlist-actions">
+          <button className="info-button-large" onClick={() => setShowInstructions(true)}>
+            <span className="info-icon">ℹ️</span>
+            <span>How to use your Wishlist</span>
+          </button>
+          <button className="update-drops-button" onClick={handleUpdateDrops}>
+            <span className="update-icon">🔄</span>
+            <span>Update Drops</span>
+          </button>
+        </div>
       </div>
       
       {showInstructions && (
@@ -412,14 +542,23 @@ const WishlistPage = () => {
                           className="wishlist-item"
                         >
                           <div className="item-rank">{index + 1}</div>
-                          <div className="item-name">{item.name}</div>
+                          <div 
+                            className="item-name"
+                            onClick={() => handleComicClick(item.name)}
+                            style={{ cursor: 'pointer' }}
+                          >
+                            {item.name}
+                          </div>
                           <div 
                             className="rank-handle"
                             {...provided.dragHandleProps}
                           >≡</div>
                           <button 
                             className="remove-button" 
-                            onClick={() => handleRemoveComic(item.id)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleRemoveComic(item.id);
+                            }}
                             title="Remove from wishlist"
                           >
                             ✖
@@ -469,14 +608,23 @@ const WishlistPage = () => {
                           className="wishlist-item"
                         >
                           <div className="item-rank">{index + 1}</div>
-                          <div className="item-name">{item.name}</div>
+                          <div 
+                            className="item-name"
+                            onClick={() => handleAuthorClick(item.name)}
+                            style={{ cursor: 'pointer' }}
+                          >
+                            {item.name}
+                          </div>
                           <div 
                             className="rank-handle"
                             {...provided.dragHandleProps}
                           >≡</div>
                           <button 
                             className="remove-button" 
-                            onClick={() => handleRemoveAuthor(item.id)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleRemoveAuthor(item.id);
+                            }}
                             title="Remove from wishlist"
                           >
                             ✖
@@ -578,6 +726,15 @@ const WishlistPage = () => {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      )}
+
+      {dropsUpdateNotification && (
+        <div className="cart-notification">
+          <div className="notification-content">
+            <span className="notification-icon">🔄</span>
+            <p>{dropsUpdateNotification}</p>
           </div>
         </div>
       )}

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './BuyMarketplace.css';
 import CartIcon from '../components/CartIcon';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useWishlist } from '../components/WishlistContext';
 import { useCart } from '../components/CartContext';
 
@@ -35,10 +35,47 @@ const BuyMarketplace = () => {
   const [wishlistNotification, setWishlistNotification] = useState(null);
   
   const navigate = useNavigate();
+  const location = useLocation();
   
   // Use the wishlist context instead of local state
   const { wishlistItems, addToWishlist } = useWishlist();
   const { addToCart } = useCart();
+  
+  // Handle URL parameters on component mount
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const comicParam = queryParams.get('comic');
+    const authorParam = queryParams.get('author');
+    
+    if (comicParam) {
+      // Find the comic in the data
+      const comic = comicData.find(c => c.Title === comicParam);
+      if (comic) {
+        // Set the comic as selected to show the popup
+        setSelectedComic(comic);
+      } else {
+        // If comic not found, set it as search query
+        setSearchQuery(comicParam);
+        setShowSearchPopup(true);
+      }
+    } else if (authorParam) {
+      // Set author as search query and show search popup
+      setSearchQuery(authorParam);
+      setShowSearchPopup(true);
+      
+      // Perform search for this author
+      const results = comicData.filter(comic => 
+        comic.Author && comic.Author.toLowerCase().includes(authorParam.toLowerCase())
+      );
+      setSearchResults(results);
+    }
+    
+    // Clear the URL parameters after handling them
+    if (comicParam || authorParam) {
+      // Use the current path instead of hardcoding it
+      navigate(location.pathname, { replace: true });
+    }
+  }, [location.search, navigate, location.pathname]);
   
   // Function to safely get image path
   const getImagePath = (imagePath, fallback) => {

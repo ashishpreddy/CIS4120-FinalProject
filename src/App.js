@@ -43,6 +43,7 @@ function App() {
             <Routes>
               <Route path="/" element={renderPage()} />
               <Route path="/buy" element={<BuyMarketplace />} />
+              <Route path="/buy-marketplace" element={<BuyMarketplace />} />
               <Route path="/wishlist" element={<WishlistPage />} />
               <Route path="/drops" element={<DropsPage />} />
               <Route path="/profile" element={<ProfilePage />} />
