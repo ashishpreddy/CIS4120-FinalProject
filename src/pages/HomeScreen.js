@@ -23,7 +23,8 @@ const HomeScreen = () => {
       </div>
       
       <h2 className="cta-heading">I want to...</h2>
-      
+
+
       <div className="cta-buttons">
         <Link to="/buy" className="cta-button buy-button">
           <div className="icon">🛒</div>

@@ -24,7 +24,7 @@ const Navigation = () => {
       </Link>
       
       <Link to="/buy" className={`nav-item ${currentPath === '/buy' ? 'active' : ''}`}>
-        <div className="nav-icon">🛒</div>
+        <div className="nav-icon">🏪</div>
         <div className="nav-button">Buy</div>
       </Link>
       

@@ -698,6 +698,13 @@ const BuyMarketplace = () => {
                   <span className="detail-label">Grade:</span>
                   <span className="detail-value">{selectedComic.Grade}</span>
                 </div>
+                
+                <div className="detail-item">
+                  <span className="detail-label">Availability:</span>
+                  <span className={`detail-value ${selectedComic.Availability === false ? 'unavailable-text' : 'available-text'}`}>
+                    {selectedComic.Availability === false ? 'Currently Unavailable' : 'In Stock'}
+                  </span>
+                </div>
               </div>
             </div>
             
@@ -708,13 +715,16 @@ const BuyMarketplace = () => {
             
             <div className="comic-details-actions">
               <button 
-                className="add-to-cart-button"
+                className={`add-to-cart-button ${selectedComic.Availability === false ? 'button-disabled' : ''}`}
                 onClick={() => {
-                  handleAddToCart(selectedComic);
-                  setSelectedComic(null);
+                  if (selectedComic.Availability !== false) {
+                    handleAddToCart(selectedComic);
+                    setSelectedComic(null);
+                  }
                 }}
+                disabled={selectedComic.Availability === false}
               >
-                Add to Cart
+                {selectedComic.Availability === false ? 'Out of Stock' : 'Add to Cart'}
               </button>
               <button 
                 className="add-to-wishlist-button"

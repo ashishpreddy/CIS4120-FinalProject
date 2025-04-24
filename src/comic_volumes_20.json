@@ -10,7 +10,8 @@
     "Price": "$275",
     "Grade": "CGC 9.0",
     "Buzzwords": ["Silver Age classic", "First appearance", "Stan Lee masterpiece", "Iconic team debut", "Marvel milestone"],
-    "CoverImage": "../assets/fantastic-four-vol-1-1.jpg"
+    "CoverImage": "../assets/fantastic-four-vol-1-1.jpg",
+    "Availability": true
   },
   {
     "Title": "Amazing Spider-Man Vol. 1 #1",
@@ -23,7 +24,8 @@
     "Price": "$175",
     "Grade": "CGC 8.5",
     "Buzzwords": ["Silver Age gem", "Early Spider-Man", "Ditko artwork", "Key issue", "First solo series"],
-    "CoverImage": "../assets/amazing-spider-man-vol-1-1.jpg"
+    "CoverImage": "../assets/amazing-spider-man-vol-1-1.jpg",
+    "Availability": true
   },
   {
     "Title": "The Incredible Hulk Vol. 1 #1",
@@ -36,7 +38,8 @@
     "Price": "$190",
     "Grade": "CGC 7.5",
     "Buzzwords": ["First appearance", "Marvel key", "Gray Hulk original", "Kirby monster", "Atomic age icon"],
-    "CoverImage": "../assets/incredible-hulk-vol-1-1.jpg"
+    "CoverImage": "../assets/incredible-hulk-vol-1-1.jpg",
+    "Availability": true
   },
   {
     "Title": "Journey Into Mystery Vol. 1 #83",
@@ -49,7 +52,8 @@
     "Price": "$950",
     "Grade": "CGC 8.0",
     "Buzzwords": ["First appearance", "Mythology meets superheroes", "Asgardian debut", "Silver Age treasure", "Hammer time"],
-    "CoverImage": "../assets/journey-into-mystery-vol-1-83.jpg"
+    "CoverImage": "../assets/journey-into-mystery-vol-1-83.jpg",
+    "Availability": true
   },
   {
     "Title": "The Silver Surfer Vol. 1 #1",
@@ -62,7 +66,8 @@
     "Price": "$580",
     "Grade": "CGC 9.4",
     "Buzzwords": ["Cosmic Marvel", "Philosophical storytelling", "Buscema masterpiece", "Existential hero", "Silver Age sophistication"],
-    "CoverImage": "../assets/the-silver-surfer-vol-1-1.jpg"
+    "CoverImage": "../assets/the-silver-surfer-vol-1-1.jpg",
+    "Availability": true
   },
   {
     "Title": "X-Men Vol. 1 #1",
@@ -75,7 +80,8 @@
     "Price": "$1400",
     "Grade": "CGC 8.5",
     "Buzzwords": ["Mutant debut", "Silver Age milestone", "First Magneto", "Civil rights allegory", "Superhero team launch"],
-    "CoverImage": "../assets/x-men-vol-1-1.jpg"
+    "CoverImage": "../assets/x-men-vol-1-1.jpg",
+    "Availability": true
   },
   {
     "Title": "Iron Man Vol. 1 #1",
@@ -88,7 +94,8 @@
     "Price": "$125",
     "Grade": "CGC 9.2",
     "Buzzwords": ["Silver Age tech hero", "Colan artwork", "Cold War themes", "Armored Avenger", "Solo series launch"],
-    "CoverImage": "../assets/iron-man-vol-1-1.jpg"
+    "CoverImage": "../assets/iron-man-vol-1-1.jpg",
+    "Availability": false
   },
   {
     "Title": "Daredevil Vol. 1 #1",
@@ -101,7 +108,8 @@
     "Price": "$860",
     "Grade": "CGC 8.0",
     "Buzzwords": ["Silver Age debut", "Blind justice", "Urban vigilante", "Everett artwork", "Marvel street-level hero"],
-    "CoverImage": "../assets/daredevil-vol-1-1.jpg"
+    "CoverImage": "../assets/daredevil-vol-1-1.jpg",
+    "Availability": false
   },
   {
     "Title": "Black Panther Vol. 1 #1",
@@ -114,7 +122,8 @@
     "Price": "$850",
     "Grade": "CGC 9.4",
     "Buzzwords": ["Kirby classic", "Afrofuturism pioneer", "Bronze Age milestone", "Cultural icon", "Royal superhero"],
-    "CoverImage": "../assets/black-panther-vol-1-1.jpg"
+    "CoverImage": "../assets/black-panther-vol-1-1.jpg",
+    "Availability": false
   },
   {
     "Title": "Doctor Strange Vol. 1 #1",
@@ -127,7 +136,8 @@
     "Price": "$420",
     "Grade": "CGC 9.6",
     "Buzzwords": ["Mystical Marvel", "Psychedelic art", "Bronze Age brilliance", "Occult superhero", "Dimension-hopping adventure"],
-    "CoverImage": "../assets/doctor-strange-vol-1-1.jpg"
+    "CoverImage": "../assets/doctor-strange-vol-1-1.jpg",
+    "Availability": true
   },
   {
     "Title": "Superman Vol. 1 #1",
@@ -140,7 +150,8 @@
     "Price": "$650",
     "Grade": "CGC 6.5",
     "Buzzwords": ["Golden Age milestone", "Historical treasure", "First superhero solo series", "Siegel & Shuster classic", "Comic book holy grail"],
-    "CoverImage": "../assets/superman-vol-1-1.jpg"
+    "CoverImage": "../assets/superman-vol-1-1.jpg",
+    "Availability": true
   },
   {
     "Title": "Batman Vol. 1 #1",
@@ -153,7 +164,8 @@
     "Price": "$725",
     "Grade": "CGC 7.0",
     "Buzzwords": ["Golden Age masterpiece", "First Joker", "First Catwoman", "Noir superhero", "Collector's dream"],
-    "CoverImage": "../assets/batman-vol-1-1.jpg"
+    "CoverImage": "../assets/batman-vol-1-1.jpg",
+    "Availability": true
   },
   {
     "Title": "Wonder Woman Vol. 1 #1",
@@ -166,7 +178,8 @@
     "Price": "$350",
     "Grade": "CGC 7.5",
     "Buzzwords": ["Golden Age icon", "Feminist pioneer", "Amazon warrior", "DC Trinity member", "Marston classic"],
-    "CoverImage": "../assets/wonder-woman-vol-1-1.jpg"
+    "CoverImage": "../assets/wonder-woman-vol-1-1.jpg",
+    "Availability": false
   },
   {
     "Title": "The Flash Vol. 1 #105",
@@ -179,7 +192,8 @@
     "Price": "$185",
     "Grade": "CGC 9.0",
     "Buzzwords": ["Silver Age rebirth", "Infantino artwork", "Speed Force pioneer", "Silver Age milestone", "DC relaunch"],
-    "CoverImage": "../assets/the-flash-vol-1-105.jpg"
+    "CoverImage": "../assets/the-flash-vol-1-105.jpg",
+    "Availability": true
   },
   {
     "Title": "Green Lantern Vol. 2 #1",
@@ -192,7 +206,8 @@
     "Price": "$150",
     "Grade": "CGC 9.2",
     "Buzzwords": ["Space cop debut", "Silver Age reimagining", "Gil Kane art", "Cosmic DC", "Power ring classic"],
-    "CoverImage": "../assets/green-lantern-vol-2-1.jpg"
+    "CoverImage": "../assets/green-lantern-vol-2-1.jpg",
+    "Availability": true
   },
   {
     "Title": "Spawn Vol. 1 #1",
@@ -205,7 +220,8 @@
     "Price": "$220",
     "Grade": "CGC 9.8",
     "Buzzwords": ["Image founding title", "McFarlane masterpiece", "Modern age milestone", "Supernatural antihero", "Independent revolution"],
-    "CoverImage": "../assets/spawn-vol-1-1.jpg"
+    "CoverImage": "../assets/spawn-vol-1-1.jpg",
+    "Availability": true
   },
   {
     "Title": "Saga Vol. 1 #1",
@@ -218,7 +234,8 @@
     "Price": "$55",
     "Grade": "CGC 9.9",
     "Buzzwords": ["Modern masterpiece", "Award-winning", "Genre-defying", "Mature storytelling", "Indie phenomenon"],
-    "CoverImage": "../assets/saga-vol-1-1.jpg"
+    "CoverImage": "../assets/saga-vol-1-1.jpg",
+    "Availability": true
   },
   {
     "Title": "The Walking Dead Vol. 1 #1",
@@ -231,7 +248,8 @@
     "Price": "$125",
     "Grade": "CGC 9.6",
     "Buzzwords": ["Modern key issue", "Zombie phenomenon", "TV adaptation source", "Horror milestone", "Kirkman breakthrough"],
-    "CoverImage": "../assets/the-walking-dead-vol-1-1.jpg"
+    "CoverImage": "../assets/the-walking-dead-vol-1-1.jpg",
+    "Availability": true
   },
   {
     "Title": "Witchblade Vol. 1 #1",
@@ -244,7 +262,8 @@
     "Price": "$380",
     "Grade": "CGC 9.8",
     "Buzzwords": ["Top Cow classic", "Female protagonist", "Turner artwork", "90s phenomenon", "Mystical noir"],
-    "CoverImage": "../assets/witchblade-vol-1-1.jpg"
+    "CoverImage": "../assets/witchblade-vol-1-1.jpg",
+    "Availability": false
   },
   {
     "Title": "Invincible Vol. 1 #1",
@@ -257,6 +276,7 @@
     "Price": "$180",
     "Grade": "CGC 9.8",
     "Buzzwords": ["Kirkman classic", "Superhero deconstruction", "Coming-of-age story", "Animated adaptation", "Modern superhero essential"],
-    "CoverImage": "../assets/invincible-vol-1-1.jpg"
+    "CoverImage": "../assets/invincible-vol-1-1.jpg",
+    "Availability": true
   }
 ]

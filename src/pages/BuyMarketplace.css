@@ -777,4 +777,29 @@
 .search-result-item,
 .tab-button {
   transition: all 0.2s;
+}
+
+/* Add these styles for availability indicators */
+.unavailable-text {
+  color: #e53935;
+  font-weight: bold;
+}
+
+.available-text {
+  color: #43a047;
+  font-weight: bold;
+}
+
+/* Style for disabled buttons */
+.button-disabled {
+  background-color: #cccccc !important;
+  color: #666666 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.button-disabled:hover {
+  transform: none !important;
+  box-shadow: none !important;
 } 
