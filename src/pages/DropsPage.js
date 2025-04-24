@@ -236,8 +236,17 @@ const DropsPage = () => {
     }, 3000);
   };
   
+  // Modified function to show comic details in fullscreen mode
   const handleShowDetails = (comic) => {
     setSelectedComic(comic);
+    // Add overflow: hidden to body to prevent background scrolling
+    document.body.style.overflow = 'hidden';
+  };
+  
+  // Close details and restore body scrolling
+  const handleCloseDetails = () => {
+    setSelectedComic(null);
+    document.body.style.overflow = '';
   };
 
   useEffect(() => {
@@ -255,6 +264,11 @@ const DropsPage = () => {
       // Don't show notification on drops page
       setDropsUpdatedNotification(false);
     }
+    
+    // Clean up function to restore body scrolling when component unmounts
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [wishlistItems, authorWishlistItems]);
 
   return (
@@ -297,7 +311,14 @@ const DropsPage = () => {
         {featuredComics.map((comic, index) => (
           <div className="comic-card" key={index}>
             <div className="comic-cover">
-              <img src={getImagePath(comic.Title)} alt={comic.Title} />
+              <img 
+                src={getImagePath(comic.Title)} 
+                alt={comic.Title} 
+                onError={(e) => {
+                  console.log(`Error loading image for ${comic.Title}, using default`);
+                  e.target.src = defaultCover;
+                }}
+              />
             </div>
             <div className="comic-info">
               <h3>{comic.Title}</h3>
@@ -349,82 +370,27 @@ const DropsPage = () => {
       )}
       
       {selectedComic && (
-        <div className="comic-details-popup">
-          <div className="popup-content">
-            <button className="close-popup" onClick={() => setSelectedComic(null)}>✖</button>
-            <h3>{selectedComic.Title}</h3>
-            
-            <div className="comic-details-grid">
-              <div className="comic-details-cover">
-                <img 
-                  src={getImagePath(selectedComic.Title)} 
-                  alt={selectedComic.Title} 
-                />
-              </div>
-              
-              <div className="comic-details-info">
-                <div className="detail-item">
-                  <span className="detail-label">Publisher:</span>
-                  <span className="detail-value">{selectedComic.Publisher}</span>
-                </div>
-                
-                <div className="detail-item">
-                  <span className="detail-label">Artist:</span>
-                  <span className="detail-value">{selectedComic.Artist}</span>
-                </div>
-                
-                <div className="detail-item">
-                  <span className="detail-label">Author:</span>
-                  <span className="detail-value">{selectedComic.Author}</span>
-                </div>
-                
-                <div className="detail-item">
-                  <span className="detail-label">Genre:</span>
-                  <span className="detail-value">{selectedComic.Genre}</span>
-                </div>
-                
-                <div className="detail-item">
-                  <span className="detail-label">Character:</span>
-                  <span className="detail-value">{selectedComic.Character}</span>
-                </div>
-                
-                <div className="detail-item">
-                  <span className="detail-label">Price:</span>
-                  <span className="detail-value">{selectedComic.Price}</span>
-                </div>
-                
-                <div className="detail-item">
-                  <span className="detail-label">Grade:</span>
-                  <span className="detail-value">{selectedComic.Grade}</span>
-                </div>
-              </div>
-            </div>
-            
-            <div className="comic-description">
-              <h4>Description:</h4>
-              <p>{selectedComic.Description}</p>
-            </div>
-            
-            <div className="comic-details-actions">
-              <button 
-                className="add-to-cart-button"
-                onClick={() => {
-                  handleAddToCart(selectedComic);
-                  setSelectedComic(null);
-                }}
-              >
-                Add to Cart
-              </button>
-              <button 
-                className="add-to-wishlist-button"
-                onClick={() => {
-                  handleAddToWishlist(selectedComic);
-                  setSelectedComic(null);
-                }}
-              >
-                Add to Wishlist
-              </button>
-            </div>
+        <div className="fullscreen-comic-viewer">
+          <button className="close-viewer" onClick={handleCloseDetails}>✖</button>
+          <h3 className="comic-title">{selectedComic.Title}</h3>
+          <div className="comic-image-container">
+            <img 
+              src={getImagePath(selectedComic.Title)} 
+              alt={selectedComic.Title} 
+              className="fullscreen-comic-image"
+              onError={(e) => {
+                console.log(`Error loading image for ${selectedComic.Title}, using default`);
+                e.target.src = defaultCover;
+              }}
+            />
+          </div>
+          <div className="comic-controls">
+            <button onClick={() => handleAddToCart(selectedComic)} className="control-button">
+              Add to Cart
+            </button>
+            <button onClick={() => handleAddToWishlist(selectedComic)} className="control-button">
+              Add to Wishlist
+            </button>
           </div>
         </div>
       )}

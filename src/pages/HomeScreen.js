@@ -1,8 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './HomeScreen.css';
+import { useAppMode } from '../components/AppContext';
 
 const HomeScreen = () => {
+  const { mode, setMode } = useAppMode();
+  
+  const handleBuyClick = () => {
+    setMode('buyer');
+  };
+  
+  const handleSellClick = () => {
+    setMode('seller');
+  };
+  
   return (
     <div className="home-screen">
       <div className="comic-panel-background"></div>
@@ -24,14 +35,13 @@ const HomeScreen = () => {
       
       <h2 className="cta-heading">I want to...</h2>
 
-
       <div className="cta-buttons">
-        <Link to="/buy" className="cta-button buy-button">
+        <Link to="/buy" className="cta-button buy-button" onClick={handleBuyClick}>
           <div className="icon">🛒</div>
           <span>Buy</span>
           <div className="button-effect"></div>
         </Link>
-        <Link to="/sell" className="cta-button sell-button">
+        <Link to="/inventory" className="cta-button sell-button" onClick={handleSellClick}>
           <div className="icon">🏷️</div>
           <span>Sell</span>
           <div className="button-effect"></div>

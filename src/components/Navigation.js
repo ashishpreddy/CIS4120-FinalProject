@@ -1,37 +1,46 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navigation.css';
+import { useAppMode } from './AppContext';
 
 const Navigation = () => {
   const location = useLocation();
   const currentPath = location.pathname;
+  const { mode } = useAppMode();
+
+  // Buyer navigation items
+  const buyerNavItems = [
+    { path: '/drops', icon: '🎁', label: 'Drops' },
+    { path: '/wishlist', icon: '📋', label: 'Wishlist' },
+    { path: '/', icon: '🏠', label: 'Home', isHome: true },
+    { path: '/buy', icon: '🏪', label: 'Buy' },
+    { path: '/profile', icon: '👤', label: 'Profile' }
+  ];
+
+  // Seller navigation items
+  const sellerNavItems = [
+    { path: '/inventory', icon: '📚', label: 'Inventory' },
+    { path: '/list-item', icon: '➕', label: 'List Item' },
+    { path: '/', icon: '🏠', label: 'Home', isHome: true },
+    { path: '/orders', icon: '📦', label: 'Orders' },
+    { path: '/analytics', icon: '📊', label: 'Analytics' }
+  ];
+
+  // Choose which navigation items to display based on mode
+  const navItems = mode === 'buyer' ? buyerNavItems : sellerNavItems;
 
   return (
     <nav className="navigation">
-      <Link to="/drops" className={`nav-item ${currentPath === '/drops' ? 'active' : ''}`}>
-        <div className="nav-icon">🎁</div>
-        <div className="nav-button">Drops</div>
-      </Link>
-      
-      <Link to="/wishlist" className={`nav-item ${currentPath === '/wishlist' ? 'active' : ''}`}>
-        <div className="nav-icon">📋</div>
-        <div className="nav-button">Wishlist</div>
-      </Link>
-      
-      <Link to="/" className={`nav-item home-nav ${currentPath === '/' ? 'active' : ''}`}>
-        <div className="nav-icon">🏠</div>
-        <div className="nav-button">Home</div>
-      </Link>
-      
-      <Link to="/buy" className={`nav-item ${currentPath === '/buy' ? 'active' : ''}`}>
-        <div className="nav-icon">🏪</div>
-        <div className="nav-button">Buy</div>
-      </Link>
-      
-      <Link to="/profile" className={`nav-item ${currentPath === '/profile' ? 'active' : ''}`}>
-        <div className="nav-icon">👤</div>
-        <div className="nav-button">Profile</div>
-      </Link>
+      {navItems.map((item) => (
+        <Link 
+          key={item.path}
+          to={item.path} 
+          className={`nav-item ${item.isHome ? 'home-nav' : ''} ${currentPath === item.path ? 'active' : ''}`}
+        >
+          <div className="nav-icon">{item.icon}</div>
+          <div className="nav-button">{item.label}</div>
+        </Link>
+      ))}
     </nav>
   );
 };

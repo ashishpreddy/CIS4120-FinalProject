@@ -242,4 +242,43 @@
 .news-item,
 .action-button {
   transition: all 0.2s;
+}
+
+.mode-toggle {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 10px;
+}
+
+.mode-button {
+  padding: 10px 20px;
+  border: 2px solid var(--primary-color);
+  background-color: white;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mode-button.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.mode-button:hover:not(.active) {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.wishlist-button {
+  background-color: var(--secondary-color);
+}
+
+.inventory-button {
+  background-color: var(--primary-color);
+}
+
+.list-button {
+  background-color: var(--secondary-color);
 } 
