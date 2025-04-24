@@ -1,4 +1,4 @@
-.analytics-page {
+.seller-dashboard .analytics-page {
     padding-bottom: 80px;
     background-color: var(--background-color);
     position: relative;
@@ -6,13 +6,13 @@
     font-family: var(--body-font);
   }
   
-  .analytics-header {
+  .seller-dashboard .analytics-header {
     padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-md);
     position: relative;
     text-align: center;
   }
   
-  .analytics-title {
+  .seller-dashboard .analytics-title {
     font-family: var(--heading-font);
     color: var(--primary-color);
     font-size: 48px;
@@ -21,20 +21,20 @@
     letter-spacing: 2px;
   }
   
-  .analytics-subtitle {
+  .seller-dashboard .analytics-subtitle {
     color: var(--text-color);
     font-size: 16px;
     margin-bottom: 20px;
   }
   
-  .time-range-selector {
+  .seller-dashboard .time-range-selector {
     display: flex;
     gap: 10px;
     margin-top: 20px;
     justify-content: center;
   }
   
-  .time-button {
+  .seller-dashboard .time-button {
     padding: 8px 16px;
     border: 2px solid var(--primary-color);
     background-color: white;
@@ -44,17 +44,17 @@
     transition: all 0.2s;
   }
   
-  .time-button.active {
+  .seller-dashboard .time-button.active {
     background-color: var(--primary-color);
     color: white;
   }
   
-  .time-button:hover:not(.active) {
+  .seller-dashboard .time-button:hover:not(.active) {
     background-color: var(--accent-color);
     border-color: var(--accent-color);
   }
   
-  .analytics-summary {
+  .seller-dashboard .analytics-summary {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
@@ -62,7 +62,7 @@
     margin-bottom: 20px;
   }
   
-  .summary-card {
+  .seller-dashboard .summary-card {
     background-color: var(--panel-color);
     border-radius: 12px;
     padding: 15px;
@@ -71,7 +71,7 @@
     box-shadow: var(--shadow-sm);
   }
   
-  .summary-icon {
+  .seller-dashboard .summary-icon {
     font-size: 24px;
     background-color: var(--accent-color);
     width: 50px;
@@ -83,40 +83,40 @@
     margin-right: 15px;
   }
   
-  .summary-content h3 {
+  .seller-dashboard .summary-content h3 {
     font-size: 14px;
     margin: 0 0 5px 0;
     color: var(--text-color);
   }
   
-  .summary-value {
+  .seller-dashboard .summary-value {
     font-size: 24px;
     font-weight: bold;
     margin: 0 0 5px 0;
     color: var(--primary-color);
   }
   
-  .summary-change {
+  .seller-dashboard .summary-change {
     font-size: 12px;
     margin: 0;
   }
   
-  .summary-change.positive {
+  .seller-dashboard .summary-change.positive {
     color: #28a745;
   }
   
-  .summary-change.negative {
+  .seller-dashboard .summary-change.negative {
     color: #dc3545;
   }
   
-  .analytics-grid {
+  .seller-dashboard .analytics-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     padding: 0 20px;
   }
   
-  .analytics-card {
+  .seller-dashboard .analytics-card {
     background-color: var(--panel-color);
     border-radius: 12px;
     padding: 20px;
@@ -124,7 +124,7 @@
     margin-bottom: 20px;
   }
   
-  .analytics-card h3 {
+  .seller-dashboard .analytics-card h3 {
     font-family: var(--heading-font);
     color: var(--primary-color);
     margin-top: 0;
@@ -134,11 +134,11 @@
   }
   
   /* Revenue Chart Styles - Completely Revised */
-  .revenue-chart {
+  .seller-dashboard .revenue-chart {
     grid-column: span 2;
   }
   
-  .revenue-chart-container {
+  .seller-dashboard .revenue-chart-container {
     height: 250px;
     display: flex;
     flex-direction: column;
@@ -146,7 +146,7 @@
     margin-top: 20px;
   }
   
-  .revenue-chart-bars {
+  .seller-dashboard .revenue-chart-bars {
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
@@ -154,14 +154,14 @@
     width: 100%;
   }
   
-  .revenue-chart-column {
+  .seller-dashboard .revenue-chart-column {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 16.66%;
   }
   
-  .revenue-chart-bar-container {
+  .seller-dashboard .revenue-chart-bar-container {
     width: 100%;
     height: 200px;
     display: flex;
@@ -169,7 +169,7 @@
     align-items: flex-end;
   }
   
-  .revenue-chart-bar {
+  .seller-dashboard .revenue-chart-bar {
     width: 40px;
     background-color: var(--primary-color);
     border-radius: 4px 4px 0 0;
@@ -178,12 +178,12 @@
     min-height: 30px;
   }
   
-  .revenue-chart-bar:hover {
+  .seller-dashboard .revenue-chart-bar:hover {
     background-color: var(--accent-color);
     transform: scaleY(1.05);
   }
   
-  .revenue-chart-bar:hover::after {
+  .seller-dashboard .revenue-chart-bar:hover::after {
     content: attr(data-value);
     position: absolute;
     top: -30px;
@@ -198,7 +198,7 @@
     z-index: 10;
   }
   
-  .revenue-chart-label {
+  .seller-dashboard .revenue-chart-label {
     margin-top: 10px;
     font-size: 14px;
     color: var(--text-color);
@@ -206,13 +206,13 @@
   }
   
   /* Top Comics Styles */
-  .top-comics-list {
+  .seller-dashboard .top-comics-list {
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
   
-  .top-comic-item {
+  .seller-dashboard .top-comic-item {
     display: flex;
     align-items: center;
     padding: 10px;
@@ -220,7 +220,7 @@
     border-radius: 8px;
   }
   
-  .top-comic-rank {
+  .seller-dashboard .top-comic-rank {
     width: 30px;
     height: 30px;
     background-color: var(--primary-color);
@@ -233,52 +233,52 @@
     margin-right: 15px;
   }
   
-  .top-comic-info h4 {
+  .seller-dashboard .top-comic-info h4 {
     margin: 0 0 5px 0;
     font-size: 16px;
   }
   
-  .top-comic-info p {
+  .seller-dashboard .top-comic-info p {
     margin: 0;
     font-size: 14px;
     color: #666;
   }
   
   /* Stats Grid Styles */
-  .stats-grid {
+  .seller-dashboard .stats-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
   }
   
-  .stat-item {
+  .seller-dashboard .stat-item {
     text-align: center;
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.03);
     border-radius: 8px;
   }
   
-  .stat-value {
+  .seller-dashboard .stat-value {
     font-size: 24px;
     font-weight: bold;
     margin: 0 0 5px 0;
     color: var(--primary-color);
   }
   
-  .stat-label {
+  .seller-dashboard .stat-label {
     font-size: 12px;
     margin: 0;
     color: #666;
   }
   
   /* Recommendations Styles */
-  .recommendations-list {
+  .seller-dashboard .recommendations-list {
     display: flex;
     flex-direction: column;
     gap: 15px;
   }
   
-  .recommendation-item {
+  .seller-dashboard .recommendation-item {
     display: flex;
     align-items: flex-start;
     padding: 10px;
@@ -286,67 +286,67 @@
     border-radius: 8px;
   }
   
-  .recommendation-icon {
+  .seller-dashboard .recommendation-icon {
     font-size: 20px;
     margin-right: 15px;
     margin-top: 5px;
   }
   
-  .recommendation-info h4 {
+  .seller-dashboard .recommendation-info h4 {
     margin: 0 0 5px 0;
     font-size: 16px;
   }
   
-  .recommendation-info p {
+  .seller-dashboard .recommendation-info p {
     margin: 0 0 5px 0;
     font-size: 14px;
     color: #666;
   }
   
-  .recommendation-reason {
+  .seller-dashboard .recommendation-reason {
     font-style: italic;
     color: #28a745 !important;
   }
   
   /* Responsive Styles */
   @media (max-width: 768px) {
-    .analytics-summary {
+    .seller-dashboard .analytics-summary {
       grid-template-columns: repeat(2, 1fr);
     }
     
-    .analytics-grid {
+    .seller-dashboard .analytics-grid {
       grid-template-columns: 1fr;
     }
     
-    .revenue-chart {
+    .seller-dashboard .revenue-chart {
       grid-column: span 1;
     }
     
-    .revenue-chart-bar {
+    .seller-dashboard .revenue-chart-bar {
       width: 30px;
     }
   }
   
   @media (max-width: 480px) {
-    .analytics-title {
+    .seller-dashboard .analytics-title {
       font-size: 36px;
     }
     
-    .summary-card {
+    .seller-dashboard .summary-card {
       flex-direction: column;
       text-align: center;
     }
     
-    .summary-icon {
+    .seller-dashboard .summary-icon {
       margin-right: 0;
       margin-bottom: 10px;
     }
     
-    .stats-grid {
+    .seller-dashboard .stats-grid {
       grid-template-columns: 1fr;
     }
     
-    .revenue-chart-bar {
+    .seller-dashboard .revenue-chart-bar {
       width: 25px;
     }
   } 

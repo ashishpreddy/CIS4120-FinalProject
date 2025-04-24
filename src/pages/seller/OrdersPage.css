@@ -1,4 +1,4 @@
-.orders-page {
+.seller-dashboard .orders-page {
     padding-bottom: 80px;
     background-color: var(--background-color);
     position: relative;
@@ -6,13 +6,13 @@
     font-family: var(--body-font);
   }
   
-  .orders-header {
+  .seller-dashboard .orders-header {
     padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-md);
     position: relative;
     text-align: center;
   }
   
-  .orders-title {
+  .seller-dashboard .orders-title {
     font-family: var(--heading-font);
     color: var(--primary-color);
     font-size: 48px;
@@ -21,14 +21,14 @@
     letter-spacing: 2px;
   }
   
-  .orders-subtitle {
+  .seller-dashboard .orders-subtitle {
     color: var(--text-color);
     font-size: 16px;
     margin-bottom: 20px;
   }
   
   /* Tabs Navigation */
-  .orders-tabs {
+  .seller-dashboard .orders-tabs {
     display: flex;
     overflow-x: auto;
     padding: 0 20px;
@@ -37,11 +37,11 @@
     scrollbar-width: none; /* Firefox */
   }
   
-  .orders-tabs::-webkit-scrollbar {
+  .seller-dashboard .orders-tabs::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Edge */
   }
   
-  .tab-button {
+  .seller-dashboard .tab-button {
     padding: 10px 15px;
     background-color: white;
     border: 2px solid var(--primary-color);
@@ -56,17 +56,17 @@
     align-items: center;
   }
   
-  .tab-button.active {
+  .seller-dashboard .tab-button.active {
     background-color: var(--primary-color);
     color: white;
   }
   
-  .tab-button:hover:not(.active) {
+  .seller-dashboard .tab-button:hover:not(.active) {
     background-color: var(--accent-color);
     border-color: var(--accent-color);
   }
   
-  .tab-count {
+  .seller-dashboard .tab-count {
     background-color: var(--accent-color);
     color: var(--primary-color);
     font-size: 12px;
@@ -79,17 +79,17 @@
     margin-left: 8px;
   }
   
-  .tab-button.active .tab-count {
+  .seller-dashboard .tab-button.active .tab-count {
     background-color: white;
     color: var(--primary-color);
   }
   
   /* Orders List */
-  .orders-list {
+  .seller-dashboard .orders-list {
     padding: 0 20px;
   }
   
-  .no-orders {
+  .seller-dashboard .no-orders {
     background-color: white;
     border-radius: 12px;
     padding: 30px;
@@ -97,7 +97,7 @@
     box-shadow: var(--shadow-md);
   }
   
-  .order-card {
+  .seller-dashboard .order-card {
     background-color: white;
     border-radius: 12px;
     margin-bottom: 15px;
@@ -105,7 +105,7 @@
     box-shadow: var(--shadow-md);
   }
   
-  .order-header {
+  .seller-dashboard .order-header {
     display: flex;
     justify-content: space-between;
     padding: 15px 20px;
@@ -113,39 +113,39 @@
     transition: background-color 0.2s;
   }
   
-  .order-header:hover {
+  .seller-dashboard .order-header:hover {
     background-color: rgba(0, 0, 0, 0.03);
   }
   
-  .order-header-left, .order-header-right {
+  .seller-dashboard .order-header-left, .seller-dashboard .order-header-right {
     display: flex;
     align-items: center;
   }
   
-  .order-id {
+  .seller-dashboard .order-id {
     font-weight: bold;
     margin: 0;
     margin-right: 15px;
     color: var(--primary-color);
   }
   
-  .order-date {
+  .seller-dashboard .order-date {
     color: #666;
     margin: 0;
   }
   
-  .order-customer {
+  .seller-dashboard .order-customer {
     margin: 0;
     margin-right: 15px;
   }
   
-  .order-total {
+  .seller-dashboard .order-total {
     font-weight: bold;
     margin: 0;
     margin-right: 15px;
   }
   
-  .status-badge {
+  .seller-dashboard .status-badge {
     padding: 5px 10px;
     border-radius: 15px;
     font-size: 12px;
@@ -153,48 +153,48 @@
     margin-right: 15px;
   }
   
-  .status-pending {
+  .seller-dashboard .status-pending {
     background-color: #ffeeba;
     color: #856404;
   }
   
-  .status-processing {
+  .seller-dashboard .status-processing {
     background-color: #b8daff;
     color: #004085;
   }
   
-  .status-shipped {
+  .seller-dashboard .status-shipped {
     background-color: #c3e6cb;
     color: #155724;
   }
   
-  .status-delivered {
+  .seller-dashboard .status-delivered {
     background-color: #d4edda;
     color: #155724;
   }
   
-  .status-returned {
+  .seller-dashboard .status-returned {
     background-color: #f5c6cb;
     color: #721c24;
   }
   
-  .expand-icon {
+  .seller-dashboard .expand-icon {
     font-size: 12px;
     color: #666;
   }
   
   /* Order Details */
-  .order-details {
+  .seller-dashboard .order-details {
     padding: 20px;
     border-top: 1px solid #eee;
     background-color: #f9f9f9;
   }
   
-  .order-details-section {
+  .seller-dashboard .order-details-section {
     margin-bottom: 20px;
   }
   
-  .order-details-section h4 {
+  .seller-dashboard .order-details-section h4 {
     font-family: var(--heading-font);
     color: var(--primary-color);
     margin-top: 0;
@@ -202,17 +202,17 @@
     font-size: 18px;
   }
   
-  .order-details-section p {
+  .seller-dashboard .order-details-section p {
     margin: 5px 0;
   }
   
-  .order-items {
+  .seller-dashboard .order-items {
     display: flex;
     flex-direction: column;
     gap: 15px;
   }
   
-  .order-item {
+  .seller-dashboard .order-item {
     display: flex;
     background-color: white;
     border-radius: 8px;
@@ -220,7 +220,7 @@
     box-shadow: var(--shadow-sm);
   }
   
-  .item-image {
+  .seller-dashboard .item-image {
     width: 60px;
     height: 80px;
     margin-right: 15px;
@@ -229,31 +229,31 @@
     background-color: #eee;
   }
   
-  .item-image img {
+  .seller-dashboard .item-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
   
-  .item-details h5 {
+  .seller-dashboard .item-details h5 {
     margin: 0 0 5px 0;
     font-size: 16px;
   }
   
-  .item-details p {
+  .seller-dashboard .item-details p {
     margin: 3px 0;
     font-size: 14px;
   }
   
   /* Order Actions */
-  .order-actions {
+  .seller-dashboard .order-actions {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 20px;
   }
   
-  .action-button {
+  .seller-dashboard .action-button {
     padding: 8px 15px;
     border-radius: 20px;
     font-weight: bold;
@@ -262,83 +262,83 @@
     border: none;
   }
   
-  .process-button {
+  .seller-dashboard .process-button {
     background-color: #b8daff;
     color: #004085;
   }
   
-  .ship-button {
+  .seller-dashboard .ship-button {
     background-color: #c3e6cb;
     color: #155724;
   }
   
-  .deliver-button {
+  .seller-dashboard .deliver-button {
     background-color: #d4edda;
     color: #155724;
   }
   
-  .return-button {
+  .seller-dashboard .return-button {
     background-color: #f5c6cb;
     color: #721c24;
   }
   
-  .cancel-button {
+  .seller-dashboard .cancel-button {
     background-color: #f5c6cb;
     color: #721c24;
   }
   
-  .contact-button {
+  .seller-dashboard .contact-button {
     background-color: #d6d8db;
     color: #383d41;
   }
   
-  .action-button:hover {
+  .seller-dashboard .action-button:hover {
     filter: brightness(0.9);
   }
   
   /* Responsive Styles */
   @media (max-width: 768px) {
-    .order-header {
+    .seller-dashboard .order-header {
       flex-direction: column;
     }
     
-    .order-header-left, .order-header-right {
+    .seller-dashboard .order-header-left, .seller-dashboard .order-header-right {
       width: 100%;
     }
     
-    .order-header-right {
+    .seller-dashboard .order-header-right {
       margin-top: 10px;
       flex-wrap: wrap;
     }
     
-    .status-badge {
+    .seller-dashboard .status-badge {
       margin-top: 5px;
     }
     
-    .order-actions {
+    .seller-dashboard .order-actions {
       flex-direction: column;
     }
     
-    .action-button {
+    .seller-dashboard .action-button {
       width: 100%;
     }
   }
   
   @media (max-width: 480px) {
-    .orders-title {
+    .seller-dashboard .orders-title {
       font-size: 36px;
     }
     
-    .tab-button {
+    .seller-dashboard .tab-button {
       padding: 8px 12px;
       font-size: 12px;
     }
     
-    .order-item {
+    .seller-dashboard .order-item {
       flex-direction: column;
     }
     
-    .item-image {
+    .seller-dashboard .item-image {
       width: 100%;
       height: 120px;
       margin-right: 0;
@@ -347,7 +347,7 @@
   }
   
   /* Add this to your OrdersPage.css file */
-  .placeholder-image {
+  .seller-dashboard .placeholder-image {
     width: 100%;
     height: 100%;
     display: flex;
@@ -358,7 +358,7 @@
   }
   
   /* Notification popup styling */
-  .notification-popup {
+  .seller-dashboard .notification-popup {
     position: fixed;
     top: 20px;
     right: 20px;
@@ -382,7 +382,7 @@
     }
   }
   
-  .notification-popup p {
+  .seller-dashboard .notification-popup p {
     margin: 0;
     font-weight: 500;
   } 

@@ -1,8 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './HomeScreen.css';
 
-const HomeScreen = () => {
+const HomeScreen = ({ setIsSeller }) => {
+  const navigate = useNavigate();
+  
+  const handleSellClick = () => {
+    setIsSeller(true); // Switch to seller mode
+    navigate('/inventory'); // This would be the first page in seller view
+  };
+  
   return (
     <div className="home-screen">
       <div className="comic-panel-background"></div>
@@ -24,18 +31,17 @@ const HomeScreen = () => {
       
       <h2 className="cta-heading">I want to...</h2>
 
-
       <div className="cta-buttons">
         <Link to="/buy" className="cta-button buy-button">
           <div className="icon">🛒</div>
           <span>Buy</span>
           <div className="button-effect"></div>
         </Link>
-        <Link to="/sell" className="cta-button sell-button">
+        <button onClick={handleSellClick} className="cta-button sell-button">
           <div className="icon">🏷️</div>
           <span>Sell</span>
           <div className="button-effect"></div>
-        </Link>
+        </button>
       </div>
       
       <div className="trending-section">

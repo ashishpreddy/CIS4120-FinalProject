@@ -401,7 +401,7 @@ const OrdersPage = () => {
       
       <div className="orders-header">
         <h1 className="orders-title">Orders</h1>
-        <p className="orders-subtitle">Manage your customer orders</p>
+        <p className="orders-subtitle">Manage your comic sales</p>
       </div>
       
       <div className="orders-tabs">

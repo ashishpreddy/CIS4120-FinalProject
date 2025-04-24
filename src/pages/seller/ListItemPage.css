@@ -1,4 +1,4 @@
-.list-item-page {
+.seller-dashboard .list-item-page {
     padding-bottom: 80px;
     background-color: var(--background-color);
     position: relative;
@@ -6,12 +6,12 @@
     font-family: var(--body-font);
   }
   
-  .list-item-header {
+  .seller-dashboard .list-item-header {
     padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-md);
     position: relative;
   }
   
-  .list-item-title {
+  .seller-dashboard .list-item-title {
     font-family: var(--heading-font);
     color: var(--primary-color);
     font-size: 48px;
@@ -20,13 +20,13 @@
     letter-spacing: 2px;
   }
   
-  .list-item-subtitle {
+  .seller-dashboard .list-item-subtitle {
     color: var(--text-color);
     font-size: 16px;
     margin-bottom: 20px;
   }
   
-  .list-item-content {
+  .seller-dashboard .list-item-content {
     padding: 20px;
     background-color: var(--panel-color);
     border-radius: 12px;
